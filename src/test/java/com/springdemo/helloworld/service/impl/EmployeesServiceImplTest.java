@@ -1,6 +1,7 @@
 package com.springdemo.helloworld.service.impl;
 
 import com.springdemo.helloworld.service.EmployeesService;
+import org.apache.ibatis.annotations.Param;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,6 @@ class EmployeesServiceImplTest {
 
     @Test
     void getByEmpNo() {
-        employeesService.getById(10001);
+
     }
 }

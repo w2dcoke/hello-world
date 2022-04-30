@@ -15,4 +15,14 @@ import org.springframework.stereotype.Service;
 public class DeptManagerServiceImpl extends ServiceImpl<DeptManagerMapper, DeptManager> implements DeptManagerService {
     @Autowired
     DeptManagerMapper deptManagerMapper;
+
+    @Override
+    public DeptManager getByEmpNo(Integer empNo) {
+        return deptManagerMapper.getByEmpNo(empNo);
+    }
+
+    @Override
+    public int deleteByEmpNo(Integer empNo) {
+        return deptManagerMapper.deleteByEmpNo(empNo);
+    }
 }

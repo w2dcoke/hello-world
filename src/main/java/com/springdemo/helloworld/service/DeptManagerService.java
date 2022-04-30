@@ -8,5 +8,7 @@ import com.springdemo.helloworld.domain.DeptManager;
  * @date 2022/4/27
  */
 public interface DeptManagerService extends IService<DeptManager> {
+    DeptManager getByEmpNo(Integer empNo);
 
+    int deleteByEmpNo(Integer empNo);
 }

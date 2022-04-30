@@ -3,8 +3,18 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springdemo.helloworld.mapper.DeptManagerMapper">
+    <delete id="deleteByEmpNo">
+        delete
+        from dept_manager
+        where emp_no = #{empNo}
+    </delete>
 
     <select id="getDeptManagerByEmpNo" resultType="DeptManager">
+        select *
+        from dept_manager
+        where emp_no = #{empNo}
+    </select>
+    <select id="getByEmpNo" resultType="DeptManager">
         select *
         from dept_manager
         where emp_no = #{empNo}

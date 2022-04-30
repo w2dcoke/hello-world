@@ -90,31 +90,37 @@
                                         <th>部门编号</th>
                                         <th>入职日期</th>
                                         <th>离职日期</th>
+                                        <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="gradeX" th:each="dm:${deptManagers}">
+                                    <tr class="gradeX" th:each="dm:${page.getRecords()}">
                                         <td th:text="${dm.getEmpNo()}"></td>
                                         <td th:text="${dm.getDeptNo()}"></td>
                                         <td th:text="${dm.getFromDate()}"></td>
                                         <td th:text="${dm.getToDate()}"></td>
+                                        <td>
+                                            <a th:href="@{/deptManager/delete/{empNo}(empNo=${dm.getEmpNo()},pageNow=${page.getCurrent()})}" class="btn btn-danger btn-sm" type="button">删除</a>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
                                 <div class="row-fluid">
                                     <div class="span6">
-                                        <div class="dataTables_info" id="hidden-table-info_info">Showing 1 to 10 of 24
-                                            entries
+                                        <div class="dataTables_info" id="hidden-table-info_info">第
+                                            [[${page.getCurrent()}]] 页 共 [[${page.getPages()}]] 页 共
+                                            [[${page.getTotal()}]] 条记录
                                         </div>
                                     </div>
                                     <div class="span6">
                                         <div class="dataTables_paginate paging_bootstrap pagination">
                                             <ul>
-                                                <li class="prev disabled"><a href="#">← Previous</a></li>
-                                                <li class="active"><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li class="next"><a href="#">Next → </a></li>
+                                                <li th:class="${page.getCurrent()!=1?'prev':'disabled'}"><a th:href="@{/dynamic_table(pageNow=${page.getCurrent()-1})}">上一页</a></li>
+                                                <li th:class="${num==page.getCurrent()?'active':''}"
+                                                    th:each="num:${#numbers.sequence(1,page.getPages())}">
+                                                    <a th:href="@{/dynamic_table(pageNow=${num})}">[[${num}]]</a>
+                                                </li>
+                                                <li th:class="${page.getCurrent()!=page.getPages()?'next':'disabled'}"><a th:href="@{/dynamic_table(pageNow=${page.getCurrent()+1})}">下一页</a></li>
                                             </ul>
                                         </div>
                                     </div>
