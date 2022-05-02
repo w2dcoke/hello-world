@@ -20,7 +20,7 @@ public class LoginController {
     DeptManagerService deptManagerService;
 
     @GetMapping(value = {"/", "/login"})
-    public String login(HttpSession session) {
+    public String login() {
         return "login";
     }
 
