@@ -1,15 +1,12 @@
 package com.springdemo.helloworld.controller;
 
 import com.springdemo.helloworld.domain.User;
-import com.springdemo.helloworld.domain.DeptManager;
 import com.springdemo.helloworld.service.DeptManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,7 +21,6 @@ public class LoginController {
 
     @GetMapping(value = {"/", "/login"})
     public String login(HttpSession session) {
-        session.removeAttribute("loginUser");
         return "login";
     }
 
@@ -42,6 +38,12 @@ public class LoginController {
     @GetMapping("/index")
     public String index() {
         return "index";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("loginUser");
+        return "redirect:/login";
     }
 
 }
